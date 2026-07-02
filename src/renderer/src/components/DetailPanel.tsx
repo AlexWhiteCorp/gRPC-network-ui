@@ -9,7 +9,7 @@ import {
   statusCode,
 } from '@/format';
 import { OutcomeBadge, StatusBadge } from './badges';
-import { JsonView } from './JsonView';
+import { JsonTree } from './JsonTree';
 
 type Tab = 'metadata' | 'messages' | 'timing' | 'status';
 
@@ -124,7 +124,7 @@ function MessagesTab({ messages }: { messages: GrpcMessage[] }): JSX.Element {
             {msg.name && <span className="message-name">{msg.name}</span>}
             <span className="message-offset">+{msg.offsetMs} ms</span>
           </div>
-          <JsonView value={msg.payload} collapsible />
+          <JsonTree value={msg.payload} />
         </section>
       ))}
     </div>

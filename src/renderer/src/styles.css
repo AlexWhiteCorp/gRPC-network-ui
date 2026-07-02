@@ -428,45 +428,73 @@ body {
   margin: 0;
 }
 
-/* ---- JSON view ---- */
-.json-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.json-view {
-  margin: 0;
-  align-self: stretch;
+/* ---- JSON tree ---- */
+.json-tree {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 0.5rem 0.6rem;
+  padding: 0.4rem 0.5rem;
   font-family: var(--mono);
   font-size: 0.78rem;
   line-height: 1.5;
-  color: var(--text);
   overflow-x: auto;
+}
+
+.jt-line {
+  display: flex;
+  align-items: baseline;
   white-space: pre;
 }
 
-.json-toggle {
-  margin-top: 0.3rem;
-  background: transparent;
-  border: none;
-  color: var(--accent);
+.jt-expandable {
   cursor: pointer;
-  font-size: 0.72rem;
-  padding: 0.1rem 0;
+  border-radius: 2px;
 }
 
-.json-toggle-top {
-  margin-top: 0;
-  margin-bottom: 0.3rem;
+.jt-expandable:hover {
+  background: var(--bg-hover);
 }
 
-.json-toggle:hover {
-  text-decoration: underline;
+.jt-toggle,
+.jt-toggle-spacer {
+  display: inline-block;
+  width: 1.1em;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  user-select: none;
+}
+
+.jt-key {
+  color: #9cdcfe;
+}
+
+.jt-punct {
+  color: var(--text-dim);
+}
+
+.jt-string {
+  color: #ce9178;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.jt-number {
+  color: #b5cea8;
+}
+
+.jt-boolean,
+.jt-null {
+  color: #569cd6;
+}
+
+.jt-collapsed {
+  color: var(--text-dim);
+}
+
+.jt-count {
+  margin-left: 0.5rem;
+  color: var(--text-faint);
+  font-size: 0.9em;
 }
 
 /* ---- Messages ---- */
