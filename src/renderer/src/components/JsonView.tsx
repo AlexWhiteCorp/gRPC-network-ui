@@ -30,21 +30,26 @@ export function JsonView({
   const shown = isLong && !expanded ? lines.slice(0, previewLines).join('\n') : text;
   const hiddenCount = lines.length - previewLines;
 
+  const renderToggle = (extraClass = ''): JSX.Element => (
+    <button
+      className={`json-toggle ${extraClass}`.trim()}
+      onClick={() => setExpanded((e) => !e)}
+      aria-expanded={expanded}
+    >
+      {expanded ? '▲ Show less' : `▼ Show ${hiddenCount} more lines`}
+    </button>
+  );
+
   return (
     <div className="json-block">
+      {/* When expanded, offer the collapse control at the top too, so the user
+          doesn't have to scroll a long payload to collapse it. */}
+      {isLong && expanded && renderToggle('json-toggle-top')}
       <pre className="json-view">
         {shown}
         {isLong && !expanded ? '\n  …' : ''}
       </pre>
-      {isLong && (
-        <button
-          className="json-toggle"
-          onClick={() => setExpanded((e) => !e)}
-          aria-expanded={expanded}
-        >
-          {expanded ? '▲ Show less' : `▼ Show ${hiddenCount} more lines`}
-        </button>
-      )}
+      {isLong && renderToggle()}
     </div>
   );
 }

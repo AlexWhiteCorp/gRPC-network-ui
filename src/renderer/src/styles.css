@@ -460,6 +460,11 @@ body {
   padding: 0.1rem 0;
 }
 
+.json-toggle-top {
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+}
+
 .json-toggle:hover {
   text-decoration: underline;
 }
