@@ -63,6 +63,15 @@ export class LogSource {
     await this.loadFile(path, `${basename(path)} (sample)`);
   }
 
+  /** Drop the accumulated calls but keep tailing the same file from the current
+   *  position, so only lines appended after this point show up. */
+  clear(): Promise<void> {
+    return this.runExclusive(async () => {
+      this.correlator.reset();
+      this.pushSnapshot(true);
+    });
+  }
+
   dispose(): void {
     this.stopWatching();
     if (this.debounceTimer) clearTimeout(this.debounceTimer);

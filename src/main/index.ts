@@ -60,6 +60,7 @@ ipcMain.handle('app:getVersion', () => app.getVersion());
 // Log-source handlers. The renderer subscribes to 'logs:snapshot' pushes.
 ipcMain.handle('logs:openFile', () => logSource?.openDialog(mainWindow) ?? null);
 ipcMain.handle('logs:loadSample', () => logSource?.loadSample());
+ipcMain.handle('logs:clear', () => logSource?.clear());
 
 app.whenReady().then(() => {
   if (!isDev) {

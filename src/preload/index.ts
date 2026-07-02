@@ -12,6 +12,9 @@ const api = {
   /** Load (and tail) the bundled sample log. */
   loadSampleLog: (): Promise<void> => ipcRenderer.invoke('logs:loadSample'),
 
+  /** Drop accumulated calls but keep tailing; only later lines will appear. */
+  clearLog: (): Promise<void> => ipcRenderer.invoke('logs:clear'),
+
   /** Subscribe to log snapshots pushed from the main process while tailing.
    *  Returns an unsubscribe function. */
   onLogSnapshot: (callback: (snapshot: LogSnapshot) => void): (() => void) => {

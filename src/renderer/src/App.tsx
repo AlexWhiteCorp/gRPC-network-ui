@@ -54,8 +54,12 @@ export function App(): JSX.Element {
   }
 
   function clearList(): void {
+    // Reset the main-process correlator too, so newly appended lines don't
+    // bring the whole history back on the next snapshot. The authoritative
+    // empty snapshot comes back over onLogSnapshot; clear locally for snappiness.
     setCalls([]);
     setSelectedId(null);
+    void window.api.clearLog();
   }
 
   async function openFile(): Promise<void> {
